@@ -44,7 +44,7 @@ export const cardList = [
     {
         id: 6,
         theme: "Web Design",
-        title: "Ебитесь",
+        title: "Ёлканах",
         date: createDateString(),
         status: "Без статуса",
         description: ""
