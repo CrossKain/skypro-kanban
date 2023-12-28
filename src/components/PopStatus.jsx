@@ -1,4 +1,5 @@
 function PopStatus() {
+    
     return (<div className="pop-browse__status status">
         <p className="status__p subttl">Статус</p>
         <div className="status__themes">

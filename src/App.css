@@ -64,6 +64,7 @@ body {
 
 ._hover02:hover, .header__user:hover {
   color: #33399b;
+  border: none;
 }
 ._hover02:hover::after, .header__user:hover::after {
   border-left-color: #33399b;
@@ -78,7 +79,7 @@ body {
   color: #FFFFFF;
 }
 
-.pop-user-set:target,
+/* .pop-user-set:target, */
 .pop-exit:target,
 .pop-new-card:target,
 .pop-browse:target {
@@ -755,7 +756,9 @@ body {
   color: #FFFFFF;
 }
 .header__user {
+  border: none;
   height: 20px;
+  background-color:transparent;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
@@ -776,8 +779,12 @@ body {
   margin: -6px 0 0 5px;
   padding: 0;
 }
+
+.header__pop-user-set--open{
+  display: block;
+}
 .header__pop-user-set {
-  display: none;
+  display: block;
   position: absolute;
   top: 61px;
   right: 0;

@@ -1,4 +1,5 @@
 function PopExit() {
+    
     return (<div className="pop-exit" id="popExit">
         <div className="pop-exit__container">
             <div className="pop-exit__block">
@@ -14,7 +15,6 @@ function PopExit() {
             </div>
         </div>
     </div>)
-
 }
 
 export default PopExit
