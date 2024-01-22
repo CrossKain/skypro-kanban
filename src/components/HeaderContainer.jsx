@@ -1,10 +1,10 @@
 import { useState } from "react"
+import { Link } from "react-router-dom";
+import { RoutesObject } from "../utils/Routes/Routes";
 
-
-function HeaderContainer({handleExit}) {
-    
+function HeaderContainer() {
     const [visible, setVisible] = useState(false);
-    
+   
 
     function handleClick () {
     setVisible(!visible)
@@ -28,7 +28,7 @@ function HeaderContainer({handleExit}) {
                         <p>Темная тема</p>
                         <input type="checkbox" className="checkbox" name="checkbox" />
                     </div>
-                    <button type="button" className="_hover03" onClick={() =>{handleExit(); handleClick()} } >Выйти</button>
+                    <button type="button" className="_hover03"><Link to={RoutesObject.EXIT}>Выйти</Link></button>
                 </div>)}
             </nav>
         </div>

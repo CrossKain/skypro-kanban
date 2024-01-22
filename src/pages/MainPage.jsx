@@ -6,6 +6,7 @@ import NewCardPopup from "../components/NewCardPopup";
 import PopExit from "../components/PopExit";
 import { cardList } from "../utils/data";
 import Cards from "../components/Cards/Cards";
+import { Outlet } from "react-router-dom";
 
 const MainPage = () => {
   const [cards, setCards] = useState(cardList);
@@ -26,7 +27,7 @@ const MainPage = () => {
     <div className="wrapper">
       {popExit ?  <PopExit handleExit={handleExit}/> : null}
       <NewCardPopup cards={cards} setCards={setCards} />
-      <EditCardPopup />
+      
       <header>
         <HeaderContainer handleExit={handleExit} />
       </header>
@@ -35,6 +36,7 @@ const MainPage = () => {
           <Cards isLoading={isLoading} cards={cards} />
         </div>
       </main>
+      <Outlet/>
     </div>
   );
 };

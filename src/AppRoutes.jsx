@@ -3,14 +3,13 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import NotFound from "./pages/NotFound";
 import RegistrationPage from "./pages/RegistrationPage";
-import TaskCard from "./pages/TaskCard";
-import ExitPage from "./pages/ExitPage";
 import MainPage from "./pages/MainPage";
 import { useState } from "react";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { RoutesObject } from "./utils/Routes/Routes";
-import Card from "./components/Card/Card";
 import PageWrapper from "./components/PageWrapper/PageWrapper";
+import EditCardPopup from "./components/EditCardPopup";
+import PopExit from "./components/PopExit";
 
 const AppRoutes = () => {
   const navigate = useNavigate();
@@ -25,16 +24,10 @@ const AppRoutes = () => {
       <Routes>
         <Route element={<ProtectedRoute isAuth={isAuth} />}>
           <Route path={RoutesObject.MAIN} element={<MainPage />}>
-            <Route
-              path={RoutesObject.CARD}
-              element={
-                <TaskCard>
-                  <Card />
-                </TaskCard>
-              }
-            />
+            <Route path={RoutesObject.CARD} element={<EditCardPopup />} />
+            <Route path={RoutesObject.EXIT} element={<PopExit />} />
           </Route>
-          <Route path={RoutesObject.EXIT} element={<ExitPage />} />
+          
         </Route>
 
         <Route
