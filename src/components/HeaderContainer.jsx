@@ -1,12 +1,15 @@
 import { useState } from "react"
 
-function HeaderContainer() {
+
+function HeaderContainer({handleExit}) {
+    
     const [visible, setVisible] = useState(false);
+    
 
     function handleClick () {
     setVisible(!visible)
     }
-
+    
     return (<div className="container">
         <div className="header__block">
             <div className="header__logo _show _light">
@@ -25,7 +28,7 @@ function HeaderContainer() {
                         <p>Темная тема</p>
                         <input type="checkbox" className="checkbox" name="checkbox" />
                     </div>
-                    <button type="button" className="_hover03"><a href="#popExit">Выйти</a></button>
+                    <button type="button" className="_hover03" onClick={() =>{handleExit(); handleClick()} } >Выйти</button>
                 </div>)}
             </nav>
         </div>

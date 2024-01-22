@@ -10,6 +10,11 @@ import Cards from "../components/Cards/Cards";
 const MainPage = () => {
   const [cards, setCards] = useState(cardList);
   const [isLoading, setIsLoading] = useState(true);
+  const [popExit, setPopExit] = useState(false);
+
+  function handleExit() {
+    setPopExit(!popExit);
+  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -19,11 +24,11 @@ const MainPage = () => {
 
   return (
     <div className="wrapper">
-      <PopExit />
+      {popExit ?  <PopExit handleExit={handleExit}/> : null}
       <NewCardPopup cards={cards} setCards={setCards} />
       <EditCardPopup />
       <header>
-        <HeaderContainer />
+        <HeaderContainer handleExit={handleExit} />
       </header>
       <main className="main">
         <div className="container">
