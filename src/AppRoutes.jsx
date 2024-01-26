@@ -12,12 +12,9 @@ import EditCardPopup from "./components/EditCardPopup";
 import PopExit from "./components/PopExit";
 
 const AppRoutes = () => {
-  const navigate = useNavigate();
+  
   const [isAuth, setAuth] = useState(false);
-  const login = () => {
-    setAuth(true);
-    navigate("/");
-  };
+
 
   return (
     <PageWrapper>
@@ -32,7 +29,7 @@ const AppRoutes = () => {
 
         <Route
           path={RoutesObject.LOGIN}
-          element={<LoginPage login={login} />}
+          element={<LoginPage setAuth={setAuth} />}
         />
         <Route path={RoutesObject.NOTFOUND} element={<NotFound />} />
         <Route

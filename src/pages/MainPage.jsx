@@ -1,42 +1,48 @@
 import { useEffect, useState } from "react";
 
-import EditCardPopup from "../components/EditCardPopup";
 import HeaderContainer from "../components/HeaderContainer";
 import NewCardPopup from "../components/NewCardPopup";
-import PopExit from "../components/PopExit";
+
 import { cardList } from "../utils/data";
 import Cards from "../components/Cards/Cards";
 import { Outlet } from "react-router-dom";
+import { getTasks } from "../API/tasks";
 
 const MainPage = () => {
   const [cards, setCards] = useState(cardList);
   const [isLoading, setIsLoading] = useState(true);
   const [popExit, setPopExit] = useState(false);
+  const [error, setError] = useState(null);
+  
 
   function handleExit() {
     setPopExit(!popExit);
   }
 
+  
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  });
+    getTasks().then((data) => {
+      setCards(data.tasks)
+      setIsLoading(false)
+    }).catch(() => {
+      setError("Не удалось загрузить данные с свервера, попробуйте позже")
+    })
+  }, [])
 
   return (
     <div className="wrapper">
-      {popExit ?  <PopExit handleExit={handleExit}/> : null}
       <NewCardPopup cards={cards} setCards={setCards} />
-      
+
       <header>
         <HeaderContainer handleExit={handleExit} />
       </header>
       <main className="main">
         <div className="container">
-          <Cards isLoading={isLoading} cards={cards} />
+        {error ? <p style={{color: "red", padding: "2em", textAlign: "center"}}>{error}</p> : <Cards isLoading={isLoading} cards={cards} /> }
+          
         </div>
       </main>
-      <Outlet/>
+      <Outlet />
     </div>
   );
 };

@@ -18,10 +18,11 @@ function Cards({ isLoading, cards }) {
                       if (data.status === status) {
                         return (
                           <Card
-                            key={data.id}
+                            key={data._id}
                             title={data.title}
-                            theme={data.theme}
+                            theme={data.topic}
                             date={data.date}
+                            text={data.text}
                           />
                         );
                       }

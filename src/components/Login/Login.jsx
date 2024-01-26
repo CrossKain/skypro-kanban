@@ -1,7 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RoutesObject } from "../../utils/Routes/Routes";
-import "./signin.css"
-const Login = ({login}) => {
+import "./signin.css";
+import { useState } from "react";
+import { loginUser } from "../../API/auth";
+
+const Login = ({ setAuth }) => {
+  const [loginState, setLoginState] = useState("");
+  const [passwordState, setPasswordState] = useState("");
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  async function login(e) {
+    e.preventDefault();
+    loginUser({ login: loginState, password: passwordState })
+      .then(() => {
+        setAuth(true);
+        navigate(RoutesObject.MAIN);
+      })
+      .catch((error) => {
+        if (error.message === "Failed to fetch") {
+          setError("У Вас проблемы, блять ....");
+        } else {
+          setError(error.message);
+        }
+      });
+  }
   return (
     <div className="wrapper">
       <div className="container-signin">
@@ -12,6 +35,8 @@ const Login = ({login}) => {
             </div>
             <form className="modal__form-login" id="formLogIn" action="#">
               <input
+                value={loginState}
+                onChange={(e) => setLoginState(e.target.value)}
                 className="modal__input"
                 type="text"
                 name="login"
@@ -19,18 +44,27 @@ const Login = ({login}) => {
                 placeholder="Эл. почта"
               />
               <input
+                value={passwordState}
+                onChange={(e) => setPasswordState(e.target.value)}
                 className="modal__input"
                 type="password"
                 name="password"
                 id="formpassword"
                 placeholder="Пароль"
               />
-              <button onClick={login} className="modal__btn-enter _hover01" id="btnEnter">
-                <Link to={RoutesObject.MAIN}>Войти</Link>
+              {error && <p style={{ color: "red" }}>{error}</p>}
+              <button
+                onClick={(e) => login(e)}
+                className="modal__btn-enter _hover01"
+                id="btnEnter"
+              >
+                Войти
               </button>
               <div className="modal__form-group">
                 <p>Нужно зарегистрироваться?</p>
-                <Link to={RoutesObject.REGISTRATION}>Регистрируйтесь здесь</Link>
+                <Link to={RoutesObject.REGISTRATION}>
+                  Регистрируйтесь здесь
+                </Link>
               </div>
             </form>
           </div>
