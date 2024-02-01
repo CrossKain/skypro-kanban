@@ -1,6 +1,6 @@
 function CalendarNav() {
     return (<div className="calendar__nav">
-        <div className="calendar__month">Сентябрь 2023</div>
+        <div className="calendar__month"></div>
         <div className="nav__actions">
             <div className="nav__action" data-action="prev">
                 <svg xmlns="http://www.w3.org/2000/svg" width="6" height="11" viewBox="0 0 6 11">

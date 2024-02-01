@@ -19,7 +19,7 @@ function HeaderContainer() {
                 <a href="" target="_self"><img src="/img/logo_dark.png" alt="logo" /></a>
             </div>
             <nav className="header__nav">
-                <button className="header__btn-main-new _hover01" id="btnMainNew"><a href="#popNewCard">Создать новую задачу</a></button>
+                <button className="header__btn-main-new _hover01" id="btnMainNew"><Link to={RoutesObject.ADD}>Создать новую задачу</Link></button>
                 <button onClick={handleClick} className="header__user _hover02">Ivan Ivanov</button>
                 {visible && (<div className="header__pop-user-set pop-user-set header__pop-user-set--open" id="user-set-target">
                     <p className="pop-user-set__name">Ivan Ivanov</p>

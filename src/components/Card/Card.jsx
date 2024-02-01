@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import { themeColorLabel } from "../../utils/CardsTheme"
 import * as S from "./Card.styled"
-import { RoutesObject } from "../../utils/Routes/Routes"
 function Card(props) {
 
     return (
@@ -11,7 +10,7 @@ function Card(props) {
                     <S.CardTheme $themeColor={themeColorLabel[props.theme]}>
                         <S.CardThemeText>{props.theme}</S.CardThemeText>
                     </S.CardTheme>
-                    <Link to={RoutesObject.CARD} target="_self">
+                    <Link to={`/card/${props.id}`} target="_self">
                         <S.CardBtn>
                             <div></div>
                             <div></div>

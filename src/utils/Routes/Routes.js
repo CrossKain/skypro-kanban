@@ -5,5 +5,6 @@ export const RoutesObject = {
     CARD: "/card/:id",
     LOGIN: "/login",
     NOTFOUND: "*",
+    ADD: "/add"
 
 }

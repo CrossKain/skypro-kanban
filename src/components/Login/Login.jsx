@@ -14,7 +14,9 @@ const Login = ({ setAuth }) => {
     e.preventDefault();
     loginUser({ login: loginState, password: passwordState })
       .then(() => {
-        setAuth(true);
+        const userItem = JSON.parse(localStorage.getItem("user"))
+
+        setAuth(userItem);
         navigate(RoutesObject.MAIN);
       })
       .catch((error) => {

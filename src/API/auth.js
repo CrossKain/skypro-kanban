@@ -9,7 +9,7 @@ export async function loginUser({ login, password }) {
     });
     if (response.ok) {
       const data = await response.json();
-      localStorage.setItem("user", data.user.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
     } else {
       const error = await response.json();
       throw new Error(error.error);

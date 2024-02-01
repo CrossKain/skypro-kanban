@@ -23,6 +23,7 @@ function Cards({ isLoading, cards }) {
                             theme={data.topic}
                             date={data.date}
                             text={data.text}
+                            id={data._id}
                           />
                         );
                       }
