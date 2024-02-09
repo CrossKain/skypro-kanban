@@ -472,6 +472,13 @@
 .categories {
   margin-bottom: 20px;
 }
+
+.categories__label  input{
+  appearance: none;
+}
+.categories__label  input:checked .categories__theme{
+  border: 1px solid red;
+}
 .categories__themes {
   display: flex;
   flex-wrap: nowrap;
@@ -782,6 +789,8 @@
   line-height: 1;
   text-transform: uppercase;
 }
+
+
 
 
 

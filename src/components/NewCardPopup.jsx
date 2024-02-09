@@ -1,7 +1,5 @@
 import { useContext, useState } from "react";
 
-import { createDateString } from "../utils/CreateDateString";
-
 import Calendar from "./Calendar";
 import CalendarNav from "./CalendarNav";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,21 +8,20 @@ import { postNewTask } from "../API/tasks";
 import { TasksContext } from "./TasksProvider/TasksProvider";
 
 function NewCardPopup() {
-  const [titleValue, setTitleValue] = useState("");
-  const [descriptionValue, setDescriptionValue] = useState("");
+  const [taskValue, setTaskValue] = useState({
+    title: "",
+    topic: "",
+    status: "Без статуса",
+    description: "",
+    date: "",
+  });
+
   const [error, setError] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { setTasks } = useContext(TasksContext);
 
   function addCard() {
-    
-    postNewTask({
-      title: titleValue,
-      topic: "Research",
-      status: "Без статуса",
-      description: descriptionValue,
-      date: new Date(),
-    })
+    postNewTask(taskValue)
       .then((response) => {
         setTasks(response.tasks);
         navigate(RoutesObject.MAIN);
@@ -57,9 +54,9 @@ function NewCardPopup() {
                     Название задачи
                   </label>
                   <input
-                    value={titleValue}
+                    value={taskValue.title}
                     onChange={(event) => {
-                      setTitleValue(event.target.value);
+                      setTaskValue({ ...taskValue, title: event.target.value });
                     }}
                     className="form-new__input"
                     type="text"
@@ -74,9 +71,12 @@ function NewCardPopup() {
                     Описание задачи
                   </label>
                   <textarea
-                    value={descriptionValue}
+                    value={taskValue.description}
                     onChange={(event) => {
-                      setDescriptionValue(event.target.value);
+                      setTaskValue({
+                        ...taskValue,
+                        description: event.target.value,
+                      });
                     }}
                     className="form-new__area"
                     name="text"
@@ -89,7 +89,7 @@ function NewCardPopup() {
                 <p className="calendar__ttl subttl">Даты</p>
                 <div className="calendar__block">
                   <CalendarNav />
-                  <Calendar />
+                  <Calendar setTaskValue={setTaskValue} taskValue={taskValue} />
                   <input type="hidden" id="datepick_value" value="08.09.2023" />
                   <div className="calendar__period">
                     <p className="calendar__p date-end">
@@ -103,15 +103,47 @@ function NewCardPopup() {
             <div className="pop-new-card__categories categories">
               <p className="categories__p subttl">Категория</p>
               <div className="categories__themes">
-                <div className="categories__theme _orange _active-category">
-                  <p className="_orange">Web Design</p>
-                </div>
-                <div className="categories__theme _green">
-                  <p className="_green">Research</p>
-                </div>
-                <div className="categories__theme _purple">
-                  <p className="_purple">Copywriting</p>
-                </div>
+                <label className="categories__label">
+                  <input
+                    checked={taskValue.topic === "Web Design"}
+                    value="Web Design"
+                    onChange={(event) =>
+                      setTaskValue({ ...taskValue, topic: event.target.value })
+                    }
+                    type="radio"
+                  />
+                  <div className="categories__theme _orange _active-category">
+                    <p className="_orange">Web Design</p>
+                  </div>
+                </label>
+
+                <label className="categories__label">
+                  <input
+                    checked={taskValue.topic === "Research"}
+                    value="Research"
+                    onChange={(event) =>
+                      setTaskValue({ ...taskValue, topic: event.target.value })
+                    }
+                    type="radio"
+                  />
+                  <div className="categories__theme _green">
+                    <p className="_green">Research</p>
+                  </div>
+                </label>
+
+                <label className="categories__label">
+                  <input
+                    checked={taskValue.topic === "Copywriting"}
+                    value="Copywriting"
+                    onChange={(event) =>
+                      setTaskValue({ ...taskValue, topic: event.target.value })
+                    }
+                    type="radio"
+                  />
+                  <div className="categories__theme _purple">
+                    <p className="_purple">Copywriting</p>
+                  </div>
+                </label>
               </div>
             </div>
             <p style={{ color: "red" }}>{error}</p>
