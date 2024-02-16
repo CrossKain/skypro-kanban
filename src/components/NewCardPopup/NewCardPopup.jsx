@@ -1,13 +1,15 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
-import Calendar from "./Calendar";
-import CalendarNav from "./CalendarNav";
+import Calendar from "../Calendar/Calendar";
+import CalendarNav from "../CalendarNav/CalendarNav";
 import { Link, useNavigate } from "react-router-dom";
-import { RoutesObject } from "../utils/Routes/Routes";
-import { postNewTask } from "../API/tasks";
-import { TasksContext } from "./TasksProvider/TasksProvider";
+import { RoutesObject } from "../../utils/Routes/Routes";
+import { postNewTask } from "../../API/tasks";
+import { TasksContext } from "../TasksProvider/TasksProvider";
+import classNames from "classnames";
 
 function NewCardPopup() {
+  const [selected, setSelected] = useState();
   const [taskValue, setTaskValue] = useState({
     title: "",
     topic: "",
@@ -34,6 +36,9 @@ function NewCardPopup() {
         }
       });
   }
+  useEffect(() => {
+    setTaskValue({ ...taskValue, date: selected });
+  }, [selected]);
   return (
     <div className="pop-new-card" id="popNewCard">
       <div className="pop-new-card__container">
@@ -89,7 +94,7 @@ function NewCardPopup() {
                 <p className="calendar__ttl subttl">Даты</p>
                 <div className="calendar__block">
                   <CalendarNav />
-                  <Calendar setTaskValue={setTaskValue} taskValue={taskValue} />
+                  <Calendar setSelected={setSelected} selected={selected} />
                   <input type="hidden" id="datepick_value" value="08.09.2023" />
                   <div className="calendar__period">
                     <p className="calendar__p date-end">
@@ -112,11 +117,15 @@ function NewCardPopup() {
                     }
                     type="radio"
                   />
-                  <div className="categories__theme _orange _active-category">
+                  <div
+                    className={classNames("categories__theme", "_orange", {
+                      "_active-category": taskValue.topic === "Web Design",
+                    })}
+                  >
                     <p className="_orange">Web Design</p>
                   </div>
                 </label>
-
+                {/* categories__theme _orange _active-category */}
                 <label className="categories__label">
                   <input
                     checked={taskValue.topic === "Research"}
@@ -126,7 +135,11 @@ function NewCardPopup() {
                     }
                     type="radio"
                   />
-                  <div className="categories__theme _green">
+                  <div
+                    className={classNames("categories__theme", "_green", {
+                      "_active-category": taskValue.topic === "Research",
+                    })}
+                  >
                     <p className="_green">Research</p>
                   </div>
                 </label>
@@ -140,7 +153,11 @@ function NewCardPopup() {
                     }
                     type="radio"
                   />
-                  <div className="categories__theme _purple">
+                  <div
+                    className={classNames("categories__theme", "_purple", {
+                      "_active-category": taskValue.topic === "Copywriting",
+                    })}
+                  >
                     <p className="_purple">Copywriting</p>
                   </div>
                 </label>
