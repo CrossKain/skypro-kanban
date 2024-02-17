@@ -37,7 +37,7 @@ const Login = ({ setAuth }) => {
             </div>
             <form className="modal__form-login" id="formLogIn" action="#">
               <input
-                style={{ borderColor: error ? "red" : "" }}
+                style={{ borderColor: error && loginState.trim() === "" ? "red" : "gray" }}
                 value={loginState}
                 onChange={(e) => setLoginState(e.target.value)}
                 className="modal__input"
@@ -47,7 +47,7 @@ const Login = ({ setAuth }) => {
                 placeholder="Эл. почта"
               />
               <input
-                style={{ borderColor: error ? "red" : "" }}
+                style={{ borderColor: error && passwordState.trim() === "" ? "red" : "gray" }}
                 value={passwordState}
                 onChange={(e) => setPasswordState(e.target.value)}
                 className="modal__input"
