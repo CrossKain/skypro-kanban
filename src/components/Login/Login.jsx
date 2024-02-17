@@ -47,7 +47,7 @@ const Login = ({ setAuth }) => {
                 placeholder="Эл. почта"
               />
               <input
-               style={{ borderColor: error ? "red" : "" }}
+                style={{ borderColor: error ? "red" : "" }}
                 value={passwordState}
                 onChange={(e) => setPasswordState(e.target.value)}
                 className="modal__input"
@@ -61,7 +61,7 @@ const Login = ({ setAuth }) => {
                 onClick={(e) => login(e)}
                 className="modal__btn-enter _hover01"
                 id="btnEnter"
-                disabled={error ? "disabled" : ""}
+                disabled={!!error}
                 style={{ backgroundColor: error ? "grey" : "blue" }}
               >
                 Войти
