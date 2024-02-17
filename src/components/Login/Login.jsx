@@ -14,7 +14,7 @@ const Login = ({ setAuth }) => {
     e.preventDefault();
     loginUser({ login: loginState, password: passwordState })
       .then(() => {
-        const userItem = JSON.parse(localStorage.getItem("user"))
+        const userItem = JSON.parse(localStorage.getItem("user"));
 
         setAuth(userItem);
         navigate(RoutesObject.MAIN);
@@ -59,6 +59,8 @@ const Login = ({ setAuth }) => {
                 onClick={(e) => login(e)}
                 className="modal__btn-enter _hover01"
                 id="btnEnter"
+                disabled={error ? "disabled" : ""}
+                style={{ backgroundColor: error ? "grey" : "blue" }}
               >
                 Войти
               </button>
