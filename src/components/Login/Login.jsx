@@ -10,6 +10,12 @@ const Login = ({ setAuth }) => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      Login(e);
+    }
+  };
+
   async function login(e) {
     e.preventDefault();
     loginUser({ login: loginState, password: passwordState })
@@ -37,7 +43,10 @@ const Login = ({ setAuth }) => {
             </div>
             <form className="modal__form-login" id="formLogIn" action="#">
               <input
-                style={{ borderColor: error && loginState.trim() === "" ? "red" : "gray" }}
+                style={{
+                  borderColor:
+                    error && loginState.trim() === "" ? "red" : "gray",
+                }}
                 value={loginState}
                 onChange={(e) => setLoginState(e.target.value)}
                 className="modal__input"
@@ -47,7 +56,10 @@ const Login = ({ setAuth }) => {
                 placeholder="Эл. почта"
               />
               <input
-                style={{ borderColor: error && passwordState.trim() === "" ? "red" : "gray" }}
+                style={{
+                  borderColor:
+                    error && passwordState.trim() === "" ? "red" : "gray",
+                }}
                 value={passwordState}
                 onChange={(e) => setPasswordState(e.target.value)}
                 className="modal__input"

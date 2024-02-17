@@ -10,6 +10,12 @@ const Registration = () => {
   const [nameState, setNameState] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      Registration(e);
+    }
+  };
   async function registration(e) {
     e.preventDefault();
 
@@ -43,7 +49,7 @@ const Registration = () => {
               style={{ borderColor: error && nameState.trim() === "" ? "red" : "gray" }}
                 value={nameState}
                 onChange={(e) => setNameState(e.target.value)}
-                
+                onKeyP
                 className="modal__input first-name"
                 type="text"
                 name="first-name"
