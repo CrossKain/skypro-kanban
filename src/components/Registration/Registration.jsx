@@ -46,10 +46,13 @@ const Registration = () => {
             </div>
             <form className="modal__form-login" id="formLogUp" action="#">
               <input
-              style={{ borderColor: error && nameState.trim() === "" ? "red" : "gray" }}
+                style={{
+                  borderColor:
+                    error && nameState.trim() === "" ? "red" : "gray",
+                }}
                 value={nameState}
                 onChange={(e) => setNameState(e.target.value)}
-                onKeyP
+                onKeyDown={handleKeyPress}
                 className="modal__input first-name"
                 type="text"
                 name="first-name"
@@ -57,9 +60,13 @@ const Registration = () => {
                 placeholder="Имя"
               />
               <input
-              style={{ borderColor: error && loginState.trim() === "" ? "red" : "gray" }}
+                style={{
+                  borderColor:
+                    error && loginState.trim() === "" ? "red" : "gray",
+                }}
                 value={loginState}
                 onChange={(e) => setLoginState(e.target.value)}
+                onKeyDown={handleKeyPress}
                 className="modal__input login"
                 type="text"
                 name="login"
@@ -67,9 +74,13 @@ const Registration = () => {
                 placeholder="Эл. почта"
               />
               <input
-                style={{ borderColor: error && passwordState.trim() === "" ? "red" : "gray" }}
+                style={{
+                  borderColor:
+                    error && passwordState.trim() === "" ? "red" : "gray",
+                }}
                 value={passwordState}
                 onChange={(e) => setPasswordState(e.target.value)}
+                onKeyDown={handleKeyPress}
                 className="modal__input password-first"
                 type="password"
                 name="password"

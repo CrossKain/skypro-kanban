@@ -43,6 +43,7 @@ const Login = ({ setAuth }) => {
             </div>
             <form className="modal__form-login" id="formLogIn" action="#">
               <input
+              onKeyDown={handleKeyPress}
                 style={{
                   borderColor:
                     error && loginState.trim() === "" ? "red" : "gray",
@@ -56,6 +57,7 @@ const Login = ({ setAuth }) => {
                 placeholder="Эл. почта"
               />
               <input
+              onKeyDown={handleKeyPress}
                 style={{
                   borderColor:
                     error && passwordState.trim() === "" ? "red" : "gray",
