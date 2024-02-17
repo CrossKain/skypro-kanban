@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { RoutesObject } from "../../utils/Routes/Routes";
 import "./signin.css";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { loginUser } from "../../API/auth";
 
 const Login = ({ setAuth }) => {
@@ -9,7 +9,11 @@ const Login = ({ setAuth }) => {
   const [passwordState, setPasswordState] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const loginRef = useRef(null);
 
+  useEffect(() => {
+    loginRef.current.focus();
+  }, []);
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       Login(e);
@@ -43,7 +47,8 @@ const Login = ({ setAuth }) => {
             </div>
             <form className="modal__form-login" id="formLogIn" action="#">
               <input
-              onKeyDown={handleKeyPress}
+              ref={loginRef}
+                onKeyDown={handleKeyPress}
                 style={{
                   borderColor:
                     error && loginState.trim() === "" ? "red" : "gray",
@@ -57,7 +62,7 @@ const Login = ({ setAuth }) => {
                 placeholder="Эл. почта"
               />
               <input
-              onKeyDown={handleKeyPress}
+                onKeyDown={handleKeyPress}
                 style={{
                   borderColor:
                     error && passwordState.trim() === "" ? "red" : "gray",

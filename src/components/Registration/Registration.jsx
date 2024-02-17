@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { RoutesObject } from "../../utils/Routes/Routes";
 import "./signup.css";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { userRegistation } from "../../API/auth";
 
 const Registration = () => {
@@ -10,6 +10,11 @@ const Registration = () => {
   const [nameState, setNameState] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const loginRef = useRef(null);
+
+  useEffect(() => {
+    loginRef.current.focus();
+  }, []);
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
@@ -46,6 +51,7 @@ const Registration = () => {
             </div>
             <form className="modal__form-login" id="formLogUp" action="#">
               <input
+              ref={loginRef}
                 style={{
                   borderColor:
                     error && nameState.trim() === "" ? "red" : "gray",
