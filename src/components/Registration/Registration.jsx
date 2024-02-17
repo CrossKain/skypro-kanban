@@ -72,7 +72,7 @@ const Registration = () => {
                 className="modal__btn-signup-ent _hover01"
                 id="SignUpEnter"
               >
-                Зарегистрироватьсz
+                Зарегистрироваться
               </button>
               <div className="modal__form-group">
                 <p>
