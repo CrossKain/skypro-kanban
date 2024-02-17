@@ -40,8 +40,10 @@ const Registration = () => {
             </div>
             <form className="modal__form-login" id="formLogUp" action="#">
               <input
+              style={{ borderColor: error || "" ? "red" : "gray" }}
                 value={nameState}
                 onChange={(e) => setNameState(e.target.value)}
+                
                 className="modal__input first-name"
                 type="text"
                 name="first-name"
@@ -49,6 +51,7 @@ const Registration = () => {
                 placeholder="Имя"
               />
               <input
+              style={{ borderColor: error || "" ? "red" : "gray" }}
                 value={loginState}
                 onChange={(e) => setLoginState(e.target.value)}
                 className="modal__input login"
@@ -58,6 +61,7 @@ const Registration = () => {
                 placeholder="Эл. почта"
               />
               <input
+              style={{ borderColor: error || "" ? "red" : "gray" }}
                 value={passwordState}
                 onChange={(e) => setPasswordState(e.target.value)}
                 className="modal__input password-first"
