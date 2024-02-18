@@ -4,7 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import NotFound from "./pages/NotFound";
 import RegistrationPage from "./pages/RegistrationPage";
 import MainPage from "./pages/MainPage";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { RoutesObject } from "./utils/Routes/Routes";
 import PageWrapper from "./components/PageWrapper/PageWrapper";

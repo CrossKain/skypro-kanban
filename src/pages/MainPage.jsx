@@ -9,6 +9,7 @@ import { Outlet } from "react-router-dom";
 import { getTasks } from "../API/tasks";
 import { TasksContext } from "../components/TasksProvider/TasksProvider";
 import { Container } from "../shared/Common.styled";
+import { DragDropContext } from 'react-beautiful-dnd';
 
 const MainPage = () => {
   

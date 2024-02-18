@@ -1,6 +1,7 @@
 import Card from "../Card/Card";
 import { statusApp } from "../../utils/data";
 import * as S from "./Cards.styled";
+import {format} from "date-fns"
 
 function Cards({ isLoading, cards }) {
   return (
@@ -21,7 +22,7 @@ function Cards({ isLoading, cards }) {
                             key={data._id}
                             title={data.title}
                             theme={data.topic}
-                            date={data.date}
+                            date={format(new Date(data.date), "dd.MM.yyyy")}
                             text={data.text}
                             id={data._id}
                           />

@@ -18,7 +18,7 @@ const Registration = () => {
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      Registration(e);
+      registration(e);
     }
   };
   async function registration(e) {
